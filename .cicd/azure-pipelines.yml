@@ -130,7 +130,7 @@ stages:
     displayName: 'Authenticate and Deploy'
     steps:
     - checkout: self
-      fetchDepth: 1
+      fetchDepth: 0  # previously 1
 
     - task: UsePythonVersion@0
       inputs:
