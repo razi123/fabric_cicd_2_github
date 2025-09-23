@@ -52,32 +52,21 @@ print(f"Items in scope: {item_type_in_scope}")
 
 token_credential = AzureCliCredential()
 
-# Test authentication
-print("Testing authentication...")
-token = token_credential.get_token("https://api.fabric.microsoft.com/.default")
-print("Authentication successful!")
+# # Test authentication
+# print("Testing authentication...")
+# token = token_credential.get_token("https://api.fabric.microsoft.com/.default")
+# print("Authentication successful!")
 
 
 # Initialize FabricWorkspace
 target_workspace = FabricWorkspace(
-    workspace_name="DEWorkshop_raziuddinkhazi_dev",     # workspace_id=target_workspace_id,
+    workspace_name="DEWorkshop_raziuddinkhazi_dev.Workspace",     # workspace_id=target_workspace_id,
     environment=target_environment,
     repository_directory=repo_directory,
     item_type_in_scope=item_type_in_scope,
     token_credential=token_credential,
     skip_powerbi=True 
 )
-
-
-# DEBUG: Check what items were discovered
-print("=== DEBUG: Discovered Items ===")
-print(f"Items in scope: {item_type_in_scope}")
-print(f"Total items discovered: {len(target_workspace.items)}")
-
-for item in target_workspace.items:
-    print(f" - {item.name} ({item.type})")
-
-print("=== END DEBUG ===")
 
 
 # Deploy items
