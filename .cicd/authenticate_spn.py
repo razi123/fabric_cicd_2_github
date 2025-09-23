@@ -54,12 +54,18 @@ token_credential = AzureCliCredential()
 
 # Initialize FabricWorkspace
 target_workspace = FabricWorkspace(
-    workspace_id=target_workspace_id,
+    workspace_name="DEWorkshop_raziuddinkhazi_dev",     # workspace_id=target_workspace_id,
     environment=target_environment,
     repository_directory=repo_directory,
     item_type_in_scope=item_type_in_scope,
     token_credential=token_credential,
+    skip_powerbi=True 
 )
+
+# After initializing target_workspace, add:
+print(f"Found {len(target_workspace.items)} items to deploy")
+for item in target_workspace.items:
+    print(f" - {item.name} ({item.type})")
 
 # Deploy items
 publish_all_items(target_workspace)
