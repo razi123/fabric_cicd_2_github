@@ -1,5 +1,5 @@
 dev:
-  target_workspace_name: DEWorkshop_raziuddinkhazi_dev.Workspace
+  target_workspace_name: DEWorkshop_raziuddinkhazi_dev
   target_workspace_id: c995b3b9-434b-4255-9848-874d1d26ff3e
   repo_directory: fabric_items
   items_in_scope:
