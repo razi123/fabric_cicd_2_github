@@ -68,10 +68,17 @@ target_workspace = FabricWorkspace(
     skip_powerbi=True 
 )
 
-# # After initializing target_workspace, add:
-# print(f"Found {len(target_workspace.items)} items to deploy")
-# for item in target_workspace.items:
-#     print(f" - {item.name} ({item.type})")
+
+# DEBUG: Check what items were discovered
+print("=== DEBUG: Discovered Items ===")
+print(f"Items in scope: {item_type_in_scope}")
+print(f"Total items discovered: {len(target_workspace.items)}")
+
+for item in target_workspace.items:
+    print(f" - {item.name} ({item.type})")
+
+print("=== END DEBUG ===")
+
 
 # Deploy items
 publish_all_items(target_workspace)
