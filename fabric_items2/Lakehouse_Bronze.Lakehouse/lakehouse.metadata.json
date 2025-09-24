@@ -1,1 +1,4 @@
-{}
+{
+  "workspaceId": "${workspace_id}",
+  "lakehouseId": "${lakehouse_bronze_id}"
+}
