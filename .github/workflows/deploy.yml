@@ -50,10 +50,29 @@ jobs:
         run: |
           az login --use-device-code
 
-      - name: Run authentication and deployment script
+      # - name: Run authentication and deployment script
+      #   run: |
+      #     echo "Target Environment: $TARGET_ENVIRONMENT"
+      #     python .cicd/authenticate_spn.py $TARGET_ENVIRONMENT
+
+      - name: Get secret from Key Vault
+        id: get_secret
         run: |
-          echo "Target Environment: $TARGET_ENVIRONMENT"
-          python .cicd/authenticate_spn.py $TARGET_ENVIRONMENT
+          STORAGE_KEY=$(az keyvault secret show \
+            --vault-name snbpocvault \
+            --name blobconnectionsecret \
+            --query value -o tsv)
+          echo "STORAGE_KEY=$STORAGE_KEY" >> $GITHUB_ENV
+
+
+      - name: Run deployment with secrets
+        run: |
+          python .cicd/deploy_with_secrets.py \
+            --environment $TARGET_ENVIRONMENT \
+            --storage-key $STORAGE_KEY
+        env:
+          STORAGE_KEY: ${{ env.STORAGE_KEY }}
+
 
       - name: Upload error log
         if: always()
