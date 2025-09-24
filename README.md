@@ -208,3 +208,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 
 ## git 
+- git add .
+- git commit -m "some message"
+- git pull origin master --rebase
+- git rebase --continue   # only if conflict apper again 
+- git push origin master
