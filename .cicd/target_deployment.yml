@@ -9,7 +9,7 @@ dev:
 
 test:
   target_workspace_name: DEWorkshop_raziuddinkhazi_test
-  target_workspace_id: a7a690aa-a738-4d42-b222-8da77173a40d
+  target_workspace_id: 8065944b-6592-4d92-8fba-240d3ebf6241
   repo_directory: fabric_items2
   items_in_scope:
     - Notebook
