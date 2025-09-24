@@ -12,6 +12,18 @@
       "note": "",
       "type": "String",
       "value": "e835c292-d746-4878-9dca-8758d7d3a7cf"
+    },
+    {
+      "name": "source_csv_path",
+      "note": "Path to the source CSV file",
+      "type": "String",
+      "value": "Files/raw-data/people-100.csv"
+    },
+    {
+      "name": "target_table_name",
+      "note": "Target table name",
+      "type": "String", 
+      "value": "People_table"
     }
   ]
 }
