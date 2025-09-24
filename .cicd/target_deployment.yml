@@ -8,7 +8,7 @@ dev:
     - Lakehouse
 
 test:
-  target_workspace_name: DEWorkshop_raziuddinkhazi_test.Workspace
+  target_workspace_name: DEWorkshop_raziuddinkhazi_test
   target_workspace_id: a7a690aa-a738-4d42-b222-8da77173a40d
   repo_directory: fabric_items2
   items_in_scope:
