@@ -60,7 +60,7 @@ token_credential = AzureCliCredential()
 
 # Initialize FabricWorkspace
 target_workspace = FabricWorkspace(
-    workspace_name="DEWorkshop_raziuddinkhazi_dev",     
+    workspace_name=target_workspace_name,     
     workspace_id=target_workspace_id,
     environment=target_environment,
     repository_directory=repo_directory,
