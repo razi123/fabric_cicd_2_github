@@ -1,31 +1,16 @@
 dev:
   target_workspace_name: DEWorkshop_raziuddinkhazi_dev.Workspace
   target_workspace_id: c995b3b9-434b-4255-9848-874d1d26ff3e
-  repo_directory: fabric_items
+  repo_directory: fabric_items2
   items_in_scope:
     - Notebook
-    - Environment
     - DataPipeline
-    - Report
-    - SemanticModel
     - Lakehouse
-    - MirroredDatabase
-    - VariableLibrary
-    - CopyJob
-    - Eventhouse
-    - KQLDatabase
-    - KQLQueryset
-    - Reflex
-    - Eventstream
-    - Warehouse
-    - SQLDatabase
-    - KQLDashboard
-    - Dataflow
 
 test:
   target_workspace_name: DEWorkshop_raziuddinkhazi_test.Workspace
   target_workspace_id: a7a690aa-a738-4d42-b222-8da77173a40d
-  repo_directory: fabric_items
+  repo_directory: fabric_items2
   items_in_scope:
     - Notebook
     - DataPipeline
