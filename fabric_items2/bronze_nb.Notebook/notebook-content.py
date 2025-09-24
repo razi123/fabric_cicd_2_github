@@ -39,14 +39,14 @@
 # file_path = "abfss://DEWorkshop_raziuddinkhazi_dev@onelake.dfs.fabric.microsoft.com/Lakehouse_Bronze.Lakehouse/Files/people-100.csv"
 # file_path = "abfss://DEWorkshop_raziuddinkhazi_feature@onelake.dfs.fabric.microsoft.com/Lakehouse_Bronze.Lakehouse/Files/people-100.csv"
 
-# file_path = "Files/raw-data/people-100.csv"
-# # Read CSV into Spark DataFrame
-# df = spark.read.format("csv") \
-#     .option("header", "true") \
-#     .option("inferSchema", "true") \
-#     .load(file_path)
+file_path = "Files/raw-data/people-100.csv"
+# Read CSV into Spark DataFrame
+df = spark.read.format("csv") \
+    .option("header", "true") \
+    .option("inferSchema", "true") \
+    .load(file_path)
 
-# display(df)
+display(df)
 
 # METADATA ********************
 
@@ -58,59 +58,10 @@
 # CELL ********************
 
 # Example: write DataFrame into Lakehouse managed tables
-# df.write.format("delta") \
-#     .mode("overwrite") \
-#     .saveAsTable("Lakehouse_Bronze.People_table")
-
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-# Get environment-specific values from Variable Library
-from notebookutils import mssparkutils
-
-# Get variable values
-source_csv_path = mssparkutils.credentials.getSecret("Variables", "source_csv_path")
-target_table_name = mssparkutils.credentials.getSecret("Variables", "target_table_name")
-
-print(f"Source CSV path: {source_csv_path}")
-print(f"Target table name: {target_table_name}")
-
-# CELL ********************
-
-# Read CSV using environment-specific path
-df = spark.read.format("csv") \
-    .option("header", "true") \
-    .option("inferSchema", "true") \
-    .load(source_csv_path)
-
-display(df)
-
-
-# CELL ********************
-
-# Write to environment-specific table name
 df.write.format("delta") \
     .mode("overwrite") \
-    .saveAsTable(f"Lakehouse_Bronze.{target_table_name}")
+    .saveAsTable("Lakehouse_Bronze.People_table")
 
-print(f"Data successfully written to table: {target_table_name}")
 
 # METADATA ********************
 
@@ -118,3 +69,4 @@ print(f"Data successfully written to table: {target_table_name}")
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
