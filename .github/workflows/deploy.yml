@@ -1,0 +1,65 @@
+name: Deploy Fabric Items
+
+on:
+  push:
+    branches:
+      - master
+      - 'release/*'
+    paths:
+      - 'fabric_items/**'
+  pull_request:
+    branches:
+      - test
+    paths:
+      - 'fabric_items/**'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment Environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - test
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      TARGET_ENVIRONMENT: ${{ github.event.inputs.environment || 'dev' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          # This uses Azure credentials stored in GitHub secrets
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r .cicd/requirements.txt
+
+      - name: Run authentication and deployment script
+        run: |
+          echo "Target Environment: $TARGET_ENVIRONMENT"
+          python .cicd/authenticate_spn.py $TARGET_ENVIRONMENT
+
+      - name: Upload error log
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: errorlog
+          path: fabric_cicd.error.log
