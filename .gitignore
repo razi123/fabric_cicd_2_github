@@ -12,6 +12,7 @@ fabric_cicd.error.log
 *Zone.Identifier
 
 *.json
+!fabric_items2/variable_group.VariableLibrary/**/*.json
 *.png
 *.md
 *draw
