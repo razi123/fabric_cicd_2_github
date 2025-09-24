@@ -6,6 +6,7 @@ dev:
     - Notebook
     - DataPipeline
     - Lakehouse
+    - VariableLibrary
 
 test:
   target_workspace_name: DEWorkshop_raziuddinkhazi_test
@@ -15,6 +16,7 @@ test:
     - Notebook
     - DataPipeline
     - Lakehouse
+    - VariableLibrary
 
 # prod:
 #   target_workspace_name: devops-prod
