@@ -69,4 +69,3 @@ df.write.format("delta") \
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
-
