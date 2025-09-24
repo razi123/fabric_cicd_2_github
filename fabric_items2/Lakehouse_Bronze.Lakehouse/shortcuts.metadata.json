@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "sourceType": "StorageAccount",
+    "name": "blob_bronze_shortcut",
+    "location": "https://${blob_storage_account}.blob.core.windows.net/${blob_container}",
+    "credentialType": "StorageAccountKey",
+    "credentialId": "${blob_connection_secret}",
+    "subitems": []
+  }
+]
