@@ -67,8 +67,7 @@ jobs:
 
       - name: Run deployment with secrets
         run: |
-          python .cicd/authenticate_spn.py \
-            --environment $TARGET_ENVIRONMENT \
+          python .cicd/authenticate_spn.py $TARGET_ENVIRONMENT \
             --storage-key $STORAGE_KEY
         env:
           STORAGE_KEY: ${{ env.STORAGE_KEY }}
