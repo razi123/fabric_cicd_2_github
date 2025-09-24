@@ -9,14 +9,6 @@
     {
       "name": "lakehouse_bronze_id",
       "value": "e835c292-d746-4878-9dca-8758d7d3a7cf"
-    },
-    {
-      "name": "blob_storage_account",
-      "value": "snbpocstorage"
-    },
-    {
-      "name": "blob_container",
-      "value": "raw-data"
     }
   ]
 }
