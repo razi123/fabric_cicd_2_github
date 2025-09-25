@@ -21,3 +21,5 @@ DefaultSemanticModel.txt
 
 *.pyc
 env_vars.sh
+
+deployment_pipeline.py
