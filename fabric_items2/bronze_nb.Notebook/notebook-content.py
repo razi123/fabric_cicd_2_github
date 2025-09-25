@@ -8,12 +8,12 @@
 # META   },
 # META   "dependencies": {
 # META     "lakehouse": {
-# META       "default_lakehouse": "d8a41520-fbd2-4395-8bba-4b99b9a05dcc",
+# META       "default_lakehouse": "dd6f2bfb-b53b-4b9a-b9f3-88d5ae363985",
 # META       "default_lakehouse_name": "Lakehouse_Bronze",
-# META       "default_lakehouse_workspace_id": "664afdb0-9225-479c-8c53-a7a229002c5f",
+# META       "default_lakehouse_workspace_id": "24fbb753-b211-47f0-9acf-ad7e07029fc8",
 # META       "known_lakehouses": [
 # META         {
-# META           "id": "d8a41520-fbd2-4395-8bba-4b99b9a05dcc"
+# META           "id": "dd6f2bfb-b53b-4b9a-b9f3-88d5ae363985"
 # META         }
 # META       ]
 # META     }
@@ -35,18 +35,14 @@
 
 # CELL ********************
 
-# Full Lakehouse ABFSS path
-# file_path = "abfss://DEWorkshop_raziuddinkhazi_dev@onelake.dfs.fabric.microsoft.com/Lakehouse_Bronze.Lakehouse/Files/people-100.csv"
-# file_path = "abfss://DEWorkshop_raziuddinkhazi_feature@onelake.dfs.fabric.microsoft.com/Lakehouse_Bronze.Lakehouse/Files/people-100.csv"
+from pyspark.sql import functions as F
 
-file_path = "Files/people-100.csv"
-# Read CSV into Spark DataFrame
-df = spark.read.format("csv") \
-    .option("header", "true") \
-    .option("inferSchema", "true") \
-    .load(file_path)
+# lowercase, replace spaces with underscores
+def clean_column_names(df):
+    for col in df.columns:
+        df = df.withColumnRenamed(col, col.strip().lower().replace(" ", "_"))
+    return df
 
-display(df)
 
 # METADATA ********************
 
@@ -57,6 +53,60 @@ display(df)
 
 # CELL ********************
 
+def mask_email(df):
+    return df.withColumn(
+        "email_masked",
+        F.concat(
+            F.substring("email", 1, 1),
+            F.lit("***@"),
+            F.regexp_extract("email", "@(.+)", 1)
+        )
+    )
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+def add_age(df):
+    return df.withColumn(
+        "age",
+        F.floor(F.datediff(F.current_date(), F.to_date("date_of_birth")) / 365)
+    )
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+if __name__ == "__main__":
+    file_path = "Files/people-100.csv"
+
+    df = spark.read.format("csv") \
+        .option("header", "true") \
+        .option("inferSchema", "true") \
+        .load(file_path)
+
+    df_transformed = (
+        df.transform(clean_column_names)
+          .transform(mask_email)
+          .transform(add_age)
+    )
+
+    display(df_transformed)
+
+    df_transformed.write.format("delta") \
+        .mode("overwrite") \
+        .saveAsTable("Lakehouse_Bronze.People_table")
 
 # METADATA ********************
 

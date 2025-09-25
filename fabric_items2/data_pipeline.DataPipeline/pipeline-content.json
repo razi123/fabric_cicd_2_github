@@ -4,7 +4,7 @@
       {
         "type": "TridentNotebook",
         "typeProperties": {
-          "notebookId": "a8861f80-ce6b-bcff-40da-158839523b9e",
+          "notebookId": "7e171931-6d22-89c9-4a36-efe3298e0f98",
           "workspaceId": "00000000-0000-0000-0000-000000000000"
         },
         "policy": {
@@ -20,7 +20,7 @@
       {
         "type": "TridentNotebook",
         "typeProperties": {
-          "notebookId": "e97cd8dc-e67e-9acd-4b1b-124f6f8b30d4",
+          "notebookId": "d8203c38-2694-a916-4155-575bd53b557a",
           "workspaceId": "00000000-0000-0000-0000-000000000000"
         },
         "policy": {

@@ -1,7 +1,7 @@
 key_value_replace:
     - find_key: $.variables[?(@.name=="workspace_id")].value
       replace_value:
-        dev: c995b3b9-434b-4255-9848-874d1d26ff3e
+        dev: 24fbb753-b211-47f0-9acf-ad7e07029fc8
         test: 8065944b-6592-4d92-8fba-240d3ebf6241   #a7a690aa-a738-4d42-b222-8da77173a40d
         # PROD: a6b1cec3-e135-4f9d-9c5c-5d69ade74dd1
       item_type: "VariableLibrary"

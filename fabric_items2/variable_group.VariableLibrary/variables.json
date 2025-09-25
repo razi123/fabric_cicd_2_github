@@ -5,13 +5,13 @@
       "name": "workspace_id",
       "note": "",
       "type": "String",
-      "value": "c995b3b9-434b-4255-9848-874d1d26ff3e"
+      "value": "24fbb753-b211-47f0-9acf-ad7e07029fc8"
     },
     {
       "name": "lakehouse_bronze_id",
       "note": "",
       "type": "String",
-      "value": "e835c292-d746-4878-9dca-8758d7d3a7cf"
+      "value": "298e0f98-efe3-4a36-89c9-6d227e171931"
     }
   ]
 }
