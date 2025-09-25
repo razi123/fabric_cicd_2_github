@@ -8,15 +8,7 @@
     },
     {
       "name": "lakehouse_bronze_id",
-      "value": "e835c292-d746-4878-9dca-8758d7d3a7cf"
-    },
-        {
-      "name": "source_csv_path",
-      "value": "Files/people-100.csv"
-    },
-    {
-      "name": "target_table_name", 
-      "value": "People_table_dev"
+      "value": "298e0f98-efe3-4a36-89c9-6d227e171931"
     }
   ]
 }
