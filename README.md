@@ -224,3 +224,14 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - mkdir -p .git/hooks
 - touch .git/hooks/pre-commit
 - chmod +x .git/hooks/pre-commit
+
+
+## diable and enable pre-commit hooks
+- cd .git/hooks
+- mv pre-commit pre-commit.disabled
+
+
+- mv pre-commit.disabled pre-commit   # re-enable
+
+# temporary skip
+- git commit --no-verify
