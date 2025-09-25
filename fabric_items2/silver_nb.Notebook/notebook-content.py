@@ -10,7 +10,7 @@
 # META     "lakehouse": {
 # META       "default_lakehouse": "e835c292-d746-4878-9dca-8758d7d3a7cf",
 # META       "default_lakehouse_name": "Lakehouse_Bronze",
-# META       "default_lakehouse_workspace_id": "c995b3b9-434b-4255-9848-874d1d26ff3e",
+# META       "default_lakehouse_workspace_id": "24fbb753-b211-47f0-9acf-ad7e07029fc8",
 # META       "known_lakehouses": [
 # META         {
 # META           "id": "e835c292-d746-4878-9dca-8758d7d3a7cf"
