@@ -1,0 +1,29 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/variableLibrary/definition/variables/1.0.0/schema.json",
+  "variables": [
+    {
+      "name": "workspace_id",
+      "note": "",
+      "type": "String",
+      "value": "c995b3b9-434b-4255-9848-874d1d26ff3e"
+    },
+    {
+      "name": "lakehouse_bronze_id",
+      "note": "",
+      "type": "String",
+      "value": "e835c292-d746-4878-9dca-8758d7d3a7cf"
+    },
+    {
+      "name": "source_csv_path",
+      "note": "Path to the source CSV file",
+      "type": "String",
+      "value": "Files/raw-data/people-100.csv"
+    },
+    {
+      "name": "target_table_name",
+      "note": "Target table name",
+      "type": "String", 
+      "value": "People_table"
+    }
+  ]
+}
