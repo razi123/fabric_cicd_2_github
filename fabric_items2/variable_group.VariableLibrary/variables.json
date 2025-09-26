@@ -12,6 +12,12 @@
       "note": "",
       "type": "String",
       "value": "298e0f98-efe3-4a36-89c9-6d227e171931"
+    },
+    {
+      "name": "source_file_path",
+      "note": "",
+      "type": "String",
+      "value": "Files/people-100.csv"
     }
   ]
 }

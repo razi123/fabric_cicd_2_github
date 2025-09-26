@@ -89,8 +89,8 @@ def add_age(df):
 # CELL ********************
 
 if __name__ == "__main__":
-    file_path = "Files/people-100.csv"
-
+    # file_path = "Files/people-100.csv"
+    file_path = source_path
     df = spark.read.format("csv") \
         .option("header", "true") \
         .option("inferSchema", "true") \

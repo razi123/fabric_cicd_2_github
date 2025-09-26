@@ -9,6 +9,10 @@
     {
       "name": "lakehouse_bronze_id",
       "value": "a52d0156-f488-450d-bfcf-efa7ec2266d8"
+    },
+    {
+      "name": "source_file_path",
+      "value": "Files/testpeople-100.csv"
     }
   ]
 }
