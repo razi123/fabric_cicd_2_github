@@ -50,3 +50,9 @@ It showcases how to automate the deployment of Fabric items across different env
 ## deployment pipeline
 - az login
 - az account get-access-token --resource https://api.fabric.microsoft.com
+
+next tasks:
+- ipynb kind of notebook (handy to code from local)
+- run the data pipeline automatically (trigger not possible at the moment)
+- deploy the variable group later 
+- connect lakehouse to respective notebooks, currently done manually
