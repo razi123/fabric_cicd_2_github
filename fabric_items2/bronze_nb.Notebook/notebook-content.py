@@ -88,8 +88,8 @@ def add_age(df):
 
 # CELL ********************
 
-def add_year_column(df):
-    return df.withColumn("year", F.year(F.col("Date_of_birth")))
+# def add_year_column(df):
+#     return df.withColumn("year", F.year(F.col("Date_of_birth")))
 
 # METADATA ********************
 
