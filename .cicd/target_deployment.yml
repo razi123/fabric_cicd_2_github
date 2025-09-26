@@ -19,8 +19,8 @@ test:
     - VariableLibrary
 
 # prod:
-#   target_workspace_name: devops-prod
-#   target_workspace_id: a6b1cec3-e135-4f9d-9c5c-5d69ade74dd1
+#   target_workspace_name: my prod workspace name
+#   target_workspace_id: my prod workspace id
 #   repo_directory: fabric_items
 #   items_in_scope:
 #     - Notebook
