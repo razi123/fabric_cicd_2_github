@@ -79,20 +79,6 @@ def add_age(df):
         F.floor(F.datediff(F.current_date(), F.to_date("date_of_birth")) / 365)
     )
 
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-# extract the year in to the new column
-def add_year_column(df):
-    return df.withColumn("year", F.year(F.col("Date_of_birth")))
-
-
 # METADATA ********************
 
 # META {
@@ -103,8 +89,8 @@ def add_year_column(df):
 # CELL ********************
 
 if __name__ == "__main__":
-    file_path = "Files/people-100.csv"
-    # file_path = source_path
+    # file_path = "Files/people-100.csv"
+    file_path = source_path
     df = spark.read.format("csv") \
         .option("header", "true") \
         .option("inferSchema", "true") \
@@ -114,7 +100,6 @@ if __name__ == "__main__":
         df.transform(clean_column_names)
           .transform(mask_email)
           .transform(add_age)
-          .transform(add_year_column)
     )
 
     display(df_transformed)
