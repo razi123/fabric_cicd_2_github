@@ -47,3 +47,10 @@ def test_add_age(spark):
     age = df_age.select("age").collect()[0][0]
     assert isinstance(age, int)
     assert age > 30
+
+def test_add_year_column(spark):
+    data = [(1, "1990-01-01")]
+    df = spark.createDataFrame(data, ["id", "Date_of_birth"])
+    df_year = bronze_nb.add_year_column(df)
+    year = df_year.select("year").collect()[0][0]
+    assert year == 1990
