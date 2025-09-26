@@ -88,6 +88,18 @@ def add_age(df):
 
 # CELL ********************
 
+def add_year_column(df):
+    return df.withColumn("year", F.year(F.col("Date_of_birth")))
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 if __name__ == "__main__":
     # file_path = "Files/people-100.csv"
     file_path = source_path
@@ -100,6 +112,7 @@ if __name__ == "__main__":
         df.transform(clean_column_names)
           .transform(mask_email)
           .transform(add_age)
+          .transform(add_year_column)
     )
 
     display(df_transformed)
