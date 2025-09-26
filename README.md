@@ -44,7 +44,7 @@ It showcases how to automate the deployment of Fabric items across different env
 - mv pre-commit.disabled pre-commit   # re-enable
 
 # temporary skip
-- git commit --no-verify
+- git commit clear
 
 
 ## deployment pipeline
