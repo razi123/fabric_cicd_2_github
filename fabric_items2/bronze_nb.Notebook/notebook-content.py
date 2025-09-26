@@ -91,6 +91,7 @@ def add_age(df):
 def add_year_column(df):
     return df.withColumn("year", F.year(F.col("Date_of_birth")))
 
+
 # METADATA ********************
 
 # META {
