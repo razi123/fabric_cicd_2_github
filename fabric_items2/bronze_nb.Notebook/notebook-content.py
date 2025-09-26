@@ -113,7 +113,7 @@ if __name__ == "__main__":
         df.transform(clean_column_names)
           .transform(mask_email)
           .transform(add_age)
-        #   .transform(add_year_column)
+          .transform(add_year_column)
     )
 
     display(df_transformed)
