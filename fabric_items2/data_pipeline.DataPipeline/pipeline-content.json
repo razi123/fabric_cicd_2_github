@@ -7,8 +7,11 @@
           "notebookId": "3fba2117-6182-94bb-4a0e-392314ef7b1c",
           "workspaceId": "00000000-0000-0000-0000-000000000000",
           "parameters": {
-            "source_file_path": {
-              "value": "",
+            "source_path": {
+              "value": {
+                "value": "@pipeline().libraryVariables.source_file_path",
+                "type": "Expression"
+              },
               "type": "string"
             }
           }
@@ -48,7 +51,7 @@
       }
     ],
     "libraryVariables": {
-      "variable_group_source_file_path": {
+      "source_file_path": {
         "type": "String",
         "variableName": "source_file_path",
         "libraryName": "variable_group"
