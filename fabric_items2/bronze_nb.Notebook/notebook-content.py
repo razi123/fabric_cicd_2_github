@@ -6,18 +6,7 @@
 # META   "kernel_info": {
 # META     "name": "synapse_pyspark"
 # META   },
-# META   "dependencies": {
-# META     "lakehouse": {
-# META       "default_lakehouse": "dd6f2bfb-b53b-4b9a-b9f3-88d5ae363985",
-# META       "default_lakehouse_name": "Lakehouse_Bronze",
-# META       "default_lakehouse_workspace_id": "24fbb753-b211-47f0-9acf-ad7e07029fc8",
-# META       "known_lakehouses": [
-# META         {
-# META           "id": "dd6f2bfb-b53b-4b9a-b9f3-88d5ae363985"
-# META         }
-# META       ]
-# META     }
-# META   }
+# META   "dependencies": {}
 # META }
 
 # CELL ********************
@@ -42,7 +31,6 @@ def clean_column_names(df):
     for col in df.columns:
         df = df.withColumnRenamed(col, col.strip().lower().replace(" ", "_"))
     return df
-
 
 # METADATA ********************
 
@@ -91,7 +79,6 @@ def add_age(df):
 def add_year_column(df):
     return df.withColumn("year", F.year(F.col("Date_of_birth")))
 
-
 # METADATA ********************
 
 # META {
@@ -121,16 +108,6 @@ if __name__ == "__main__":
     df_transformed.write.format("delta") \
         .mode("overwrite") \
         .saveAsTable("Lakehouse_Bronze.People_table")
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
 
 # METADATA ********************
 

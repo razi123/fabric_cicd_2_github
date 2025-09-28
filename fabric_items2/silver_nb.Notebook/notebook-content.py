@@ -27,6 +27,7 @@
 df = spark.sql("SELECT * FROM Lakehouse_Bronze.People_table LIMIT 1000")
 display(df)
 
+
 # METADATA ********************
 
 # META {
