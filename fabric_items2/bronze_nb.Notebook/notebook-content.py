@@ -35,13 +35,13 @@
 
 # CELL ********************
 
-from pyspark.sql import functions as F
+# from pyspark.sql import functions as F
 
 # lowercase, replace spaces with underscores
-def clean_column_names(df):
-    for col in df.columns:
-        df = df.withColumnRenamed(col, col.strip().lower().replace(" ", "_"))
-    return df
+# def clean_column_names(df):
+#     for col in df.columns:
+#         df = df.withColumnRenamed(col, col.strip().lower().replace(" ", "_"))
+#     return df
 
 # METADATA ********************
 
@@ -52,15 +52,15 @@ def clean_column_names(df):
 
 # CELL ********************
 
-def mask_email(df):
-    return df.withColumn(
-        "email_masked",
-        F.concat(
-            F.substring("email", 1, 1),
-            F.lit("***@"),
-            F.regexp_extract("email", "@(.+)", 1)
-        )
-    )
+# def mask_email(df):
+#     return df.withColumn(
+#         "email_masked",
+#         F.concat(
+#             F.substring("email", 1, 1),
+#             F.lit("***@"),
+#             F.regexp_extract("email", "@(.+)", 1)
+#         )
+#     )
 
 
 # METADATA ********************
@@ -72,11 +72,11 @@ def mask_email(df):
 
 # CELL ********************
 
-def add_age(df):
-    return df.withColumn(
-        "age",
-        F.floor(F.datediff(F.current_date(), F.to_date("date_of_birth")) / 365)
-    )
+# def add_age(df):
+#     return df.withColumn(
+#         "age",
+#         F.floor(F.datediff(F.current_date(), F.to_date("date_of_birth")) / 365)
+#     )
 
 # METADATA ********************
 
@@ -87,8 +87,8 @@ def add_age(df):
 
 # CELL ********************
 
-def add_year_column(df):
-    return df.withColumn("year", F.year(F.col("Date_of_birth")))
+# def add_year_column(df):
+#     return df.withColumn("year", F.year(F.col("Date_of_birth")))
 
 # METADATA ********************
 
@@ -98,6 +98,8 @@ def add_year_column(df):
 # META }
 
 # CELL ********************
+
+from fabric_utils.transform_utils import clean_column_names, mask_email, add_age, add_year_column
 
 if __name__ == "__main__":
     # file_path = "Files/people-100.csv"
@@ -110,8 +112,8 @@ if __name__ == "__main__":
     df_transformed = (
         df.transform(clean_column_names)
           .transform(mask_email)
-          .transform(add_age)
-          .transform(add_year_column)
+        #   .transform(add_age)
+        #   .transform(add_year_column)
     )
 
     display(df_transformed)

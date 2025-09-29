@@ -23,3 +23,8 @@ DefaultSemanticModel.txt
 env_vars.sh
 
 deployment_pipeline.py
+
+build/*
+dist/*
+
+*.egg-info/*
