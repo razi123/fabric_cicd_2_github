@@ -16,6 +16,10 @@
 # META           "id": "16db0e27-a7b9-4450-b893-ccf87626d560"
 # META         }
 # META       ]
+# META     },
+# META     "environment": {
+# META       "environmentId": "ff86fa34-8a49-9c11-4b67-87dd3c3357ec",
+# META       "workspaceId": "00000000-0000-0000-0000-000000000000"
 # META     }
 # META   }
 # META }
@@ -37,7 +41,7 @@
 
 # from pyspark.sql import functions as F
 
-# lowercase, replace spaces with underscores
+# # lowercase, replace spaces with underscores
 # def clean_column_names(df):
 #     for col in df.columns:
 #         df = df.withColumnRenamed(col, col.strip().lower().replace(" ", "_"))
@@ -99,7 +103,16 @@
 
 # CELL ********************
 
-from fabric_utils.transform_utils import clean_column_names, mask_email, add_age, add_year_column
+from fabric_utils.transform_utils import clean_column_names, mask_email  #, add_age, add_year_column
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
 
 if __name__ == "__main__":
     # file_path = "Files/people-100.csv"
