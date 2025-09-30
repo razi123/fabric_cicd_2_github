@@ -14,10 +14,18 @@ fabric_cicd.error.log
 *.json
 !fabric_items2/variable_group.VariableLibrary/**/*.json
 *.png
-*.md
 *draw
 *.platform
 DefaultSemanticModel.txt
 
 *.pyc
 env_vars.sh
+
+deployment_pipeline.py
+
+build/*
+dist/*
+
+*.egg-info/*
+
+pipeline_metadata.yaml
