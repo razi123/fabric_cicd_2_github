@@ -24,6 +24,10 @@ It showcases how to automate the deployment of Fabric items across different env
 - git rebase --continue   # only if conflict apper again 
 - git push origin master
 
+## git errors:
+- git pull origin master --no-rebase
+- git push origin master
+
 ## get resource ids
 - fab config set mode interactive
 - fab auth login
