@@ -14,7 +14,6 @@ fabric_cicd.error.log
 *.json
 !fabric_items2/variable_group.VariableLibrary/**/*.json
 *.png
-*.md
 *draw
 *.platform
 DefaultSemanticModel.txt
