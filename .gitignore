@@ -33,3 +33,5 @@ dist/*
 *.egg-info/*
 
 pipeline_metadata.yaml
+
+.cicd/azure-pipelines.yml
