@@ -51,6 +51,7 @@ def list_pipelines(access_token: str, url: str):
     return 404, None
 
 def update_dep_pipeline(access_token: str, pipeline_id):
+    print("Updating the pipeline")
     url = f"https://api.fabric.microsoft.com/v1/deploymentPipelines/{pipeline_id}"
     try:
         response = requests.patch(url, headers=get_headers(access_token))
@@ -61,8 +62,6 @@ def update_dep_pipeline(access_token: str, pipeline_id):
                     return 200, pipeline_summary["id"]
     except Exception as e:
         print("Error listing pipelines:", str(e))
-
-    return 404, None
 
 
 
@@ -157,9 +156,16 @@ def main(access_token: str):
 
     for stage in pipeline_details.get("stages", []):
         if stage.get("displayName") == "Development":
+
+            print("Pipeline ID:", pipeline_id)
+            print(f"deployment Stage ID: {stage.get('id')}")
+            print("Workspace ID:", workspaceId_dev)
             status, result = assign_workspace(access_token, pipeline_id, stage.get("id"), workspaceId_dev)
             print(f"Assigned DEV workspace: {status} {result}")
         elif stage.get("displayName") == "Test":
+            print(f"test STAGE ID: {stage.get('id')}")
+            print("Pipeline ID:", pipeline_id)
+            print("Workspace ID:", workspaceId_test)
             status, result = assign_workspace(access_token, pipeline_id, stage.get("id"), workspaceId_test)
             print(f"Assigned TEST workspace: {status} {result}")
 
