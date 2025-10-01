@@ -14,6 +14,9 @@
 # META       "known_lakehouses": [
 # META         {
 # META           "id": "df1d2d45-e701-4535-9be1-323673fb9d2b"
+# META         },
+# META         {
+# META           "id": "4492c780-54fe-4ffe-a4cf-f4c9896b0e52"
 # META         }
 # META       ]
 # META     },
@@ -69,7 +72,7 @@ if __name__ == "__main__":
 
     df_transformed.write.format("delta") \
         .mode("overwrite") \
-        .saveAsTable("Lakehouse_Bronze.People_table")
+        .saveAsTable("Lakehouse_Silver.People_table")
 
 # METADATA ********************
 
@@ -80,6 +83,8 @@ if __name__ == "__main__":
 
 # CELL ********************
 
+
+print("I am in the old feature branch")
 
 # METADATA ********************
 
