@@ -156,7 +156,8 @@ def main(access_token: str):
 
     for stage in pipeline_details.get("stages", []):
         if stage.get("displayName") == "Development":
-            print(f"deployment: {stage.get("id")}")
+            print(f"deployment: {stage.get('id')}")
+
             status, result = assign_workspace(access_token, pipeline_id, stage.get("id"), workspaceId_dev)
             print(f"Assigned DEV workspace: {status} {result}")
         elif stage.get("displayName") == "Test":
