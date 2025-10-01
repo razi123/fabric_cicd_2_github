@@ -10,7 +10,6 @@ on:
   pull_request:
     branches:
       - master
-      - test
     paths:
       - 'fabric_items/**'
   workflow_dispatch:
@@ -22,7 +21,6 @@ on:
         type: choice
         options:
           - dev
-          - test
 
 jobs:
   deploy:
@@ -67,7 +65,7 @@ jobs:
         run: |
           python .cicd/set_variable_group.py "$TARGET_ENVIRONMENT" "$FABRIC_TOKEN"
 
-          
+
       - name: Upload error log
         if: always()
         uses: actions/upload-artifact@v4
