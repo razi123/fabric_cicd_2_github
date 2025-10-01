@@ -53,10 +53,10 @@ jobs:
         run: |
           python .cicd/set_variable_group.py "$TARGET_ENVIRONMENT" "$FABRIC_TOKEN"
 
-      - name: Create Deployment Pipeline (in dev)
-        run: |
-          echo "Creating deployment pipeline in DEV environment (hardcoded)..."
-          python .cicd/deployment_pipeline.py "$FABRIC_TOKEN"
+      # - name: Create Deployment Pipeline (in dev)
+      #   run: |
+      #     echo "Creating deployment pipeline in DEV environment (hardcoded)..."
+      #     python .cicd/deployment_pipeline.py "$FABRIC_TOKEN"
 
       - name: Upload error log
         if: always()
