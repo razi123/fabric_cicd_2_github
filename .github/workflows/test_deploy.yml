@@ -1,0 +1,66 @@
+name: Deploy Fabric Items (Test)
+
+on:
+  pull_request:
+    branches:
+      - test
+    paths:
+      - 'fabric_items/**'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment Environment'
+        required: true
+        default: 'test'
+        type: choice
+        options:
+          - test
+
+jobs:
+  deploy-test:
+    runs-on: ubuntu-latest
+
+    env:
+      TARGET_ENVIRONMENT: ${{ github.event.inputs.environment || 'test' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r .cicd/requirements.txt
+
+      - name: Azure CLI login (device code)
+        run: |
+          az login --use-device-code
+
+      - name: Get Fabric access token
+        id: fabric_token
+        run: |
+          TOKEN=$(az account get-access-token --resource https://api.fabric.microsoft.com --query accessToken -o tsv)
+          echo "FABRIC_TOKEN=$TOKEN" >> $GITHUB_ENV
+
+      - name: Set Variable Library active value set (test)
+        run: |
+          python .cicd/set_variable_group.py "$TARGET_ENVIRONMENT" "$FABRIC_TOKEN"
+
+      - name: Create Deployment Pipeline (in dev)
+        run: |
+          echo "⚡ Creating deployment pipeline in DEV environment (hardcoded)..."
+          python .cicd/deployment_pipeline.py "$FABRIC_TOKEN"
+
+      - name: Upload error log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: errorlog
+          path: fabric_cicd.error.log
