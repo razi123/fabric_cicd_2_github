@@ -10,6 +10,7 @@ on:
 
 jobs:
   deploy-dev:
+    if: github.event_name =='push'  # only runs on push
     name: Deploy to Dev
     runs-on: ubuntu-latest
     environment: dev   # "Environments"
@@ -53,6 +54,7 @@ jobs:
           python .cicd/deployment_pipeline.py "$FABRIC_TOKEN"
 
   deploy-test:
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'test'
     name: Deploy to Test
     runs-on: ubuntu-latest
     needs: deploy-dev   # run only after dev succeeds
