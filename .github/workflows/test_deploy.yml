@@ -55,7 +55,7 @@ jobs:
 
       - name: Create Deployment Pipeline (in dev)
         run: |
-          echo "⚡ Creating deployment pipeline in DEV environment (hardcoded)..."
+          echo "Creating deployment pipeline in DEV environment (hardcoded)..."
           python .cicd/deployment_pipeline.py "$FABRIC_TOKEN"
 
       - name: Upload error log
