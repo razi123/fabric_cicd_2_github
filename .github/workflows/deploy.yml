@@ -9,7 +9,7 @@ on:
       - 'fabric_items/**'
   pull_request:
     branches:
-      - test
+      - master
     paths:
       - 'fabric_items/**'
   workflow_dispatch:
@@ -21,7 +21,6 @@ on:
         type: choice
         options:
           - dev
-          - test
 
 jobs:
   deploy:
@@ -50,10 +49,22 @@ jobs:
         run: |
           az login --use-device-code
 
+      ## get accesss token
+      - name: Get Fabric access token
+        id: fabric_token
+        run: |
+          TOKEN=$(az account get-access-token --resource https://api.fabric.microsoft.com --query accessToken -o tsv)
+          echo "FABRIC_TOKEN=$TOKEN" >> $GITHUB_ENV
+
       - name: Run authentication and deployment script
         run: |
           echo "Target Environment: $TARGET_ENVIRONMENT"
           python .cicd/authenticate_spn.py $TARGET_ENVIRONMENT
+
+      - name: Set Variable Library active value set
+        run: |
+          python .cicd/set_variable_group.py "$TARGET_ENVIRONMENT" "$FABRIC_TOKEN"
+
 
       - name: Upload error log
         if: always()

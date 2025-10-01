@@ -21,7 +21,11 @@ DefaultSemanticModel.txt
 *.pyc
 env_vars.sh
 
+<<<<<<< HEAD
 deployment_pipeline.py
+=======
+dummy_deployment_pipeline.py
+>>>>>>> master
 
 build/*
 dist/*
