@@ -8,19 +8,20 @@ if len(sys.argv) < 3:
 target_env = sys.argv[1]
 access_token = sys.argv[2]
 
-# if 
+
 # Replace with your actual IDs
 workspace_id_dev = "24fbb753-b211-47f0-9acf-ad7e07029fc8"
 workspace_id_test = "d8666b30-e6be-4d1e-90b8-19d40b821be9"
-library_id = "107e752c-9f02-423d-823f-7638e89ef51f"
+library_id = "000b727b-697d-439f-8593-66fbea09f8e1"
 
+print(f"target_env is {target_env}")
 
 if target_env == "dev":
     workspace_id = workspace_id_dev
 else:
     workspace_id = workspace_id_test
 
-
+print(f"workspace_id is {workspace_id}")
 
 headers = {
     "Authorization": f"Bearer {access_token}",
