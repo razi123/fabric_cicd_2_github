@@ -10,7 +10,6 @@ on:
 
 jobs:
   deploy-dev:
-    if: github.event_name =='push'  # only runs on push
     name: Deploy to Dev
     runs-on: ubuntu-latest
     environment: dev   # "Environments"
