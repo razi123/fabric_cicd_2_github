@@ -50,6 +50,21 @@ def list_pipelines(access_token: str, url: str):
 
     return 404, None
 
+def update_dep_pipeline(access_token: str, pipeline_id):
+    url = f"https://api.fabric.microsoft.com/v1/deploymentPipelines/{pipeline_id}"
+    try:
+        response = requests.patch(url, headers=get_headers(access_token))
+        if response.status_code == 200:
+            pipelines = response.json()
+            for pipeline_summary in pipelines.get("value", []):
+                if pipeline_summary.get("displayName") == "Fabric Test Deployment Pipeline":
+                    return 200, pipeline_summary["id"]
+    except Exception as e:
+        print("Error listing pipelines:", str(e))
+
+    return 404, None
+
+
 
 def assign_workspace(access_token: str, pipeline_id: str, stage_id: str, workspace_id: str):
     url = f"https://api.fabric.microsoft.com/v1/deploymentPipelines/{pipeline_id}/stages/{stage_id}/assignWorkspace"
@@ -93,6 +108,10 @@ def save_pipeline_metadata_yaml(pipeline_data, output_file="pipeline_metadata.ya
 
 
 def main(access_token: str):
+    # Assign workspaces (hardcoded for DEV and TEST)
+    workspaceId_dev = "24fbb753-b211-47f0-9acf-ad7e07029fc8"
+    workspaceId_test = "d8666b30-e6be-4d1e-90b8-19d40b821be9"
+
     fabric_api_url = "https://api.fabric.microsoft.com/v1/deploymentPipelines"
 
     payload = {
@@ -116,6 +135,8 @@ def main(access_token: str):
     status, pipeline_id = list_pipelines(access_token, fabric_api_url)
     if status == 200 and pipeline_id:
         print(f"Pipeline already exists with ID: {pipeline_id}")
+        update_dep_pipeline(access_token, pipeline_id=pipeline_id)
+        # update_dep_pipeline_stages(access_token, fabric_api_url)
     else:
         print("Creating new pipeline...")
         status, result = create_pipeline(access_token, payload, fabric_api_url)
@@ -127,15 +148,12 @@ def main(access_token: str):
             sys.exit(1)
 
     status, pipeline_details = get_pipeline_details(access_token, pipeline_id, fabric_api_url)
+
     if status != 200:
         print("Failed to get pipeline details")
         sys.exit(1)
 
     metadata = save_pipeline_metadata_yaml(pipeline_details)
-
-    # Assign workspaces (hardcoded for DEV and TEST)
-    workspaceId_dev = "24fbb753-b211-47f0-9acf-ad7e07029fc8"
-    workspaceId_test = "d8666b30-e6be-4d1e-90b8-19d40b821be9"
 
     for stage in pipeline_details.get("stages", []):
         if stage.get("displayName") == "Development":
