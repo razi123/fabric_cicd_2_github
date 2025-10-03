@@ -1,0 +1,38 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "9ef0ef23-5b7a-963e-44c9-a506287e0e94",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "source_path": {
+              "value": {
+                "value": "@pipeline().libraryVariables.Variables_group_source_file_path",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "bronze_nb",
+        "dependsOn": []
+      }
+    ],
+    "libraryVariables": {
+      "Variables_group_source_file_path": {
+        "type": "String",
+        "variableName": "source_file_path",
+        "libraryName": "Variables_group"
+      }
+    }
+  }
+}

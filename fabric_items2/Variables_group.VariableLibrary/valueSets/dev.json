@@ -8,7 +8,7 @@
     },
     {
       "name": "source_file_path",
-      "value": "Files/people-100.csv"
+      "value": "Files/raw-data-dev/dev-people-100.csv"
     }
   ]
 }
