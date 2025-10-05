@@ -7,6 +7,15 @@ on:
     paths:
       - 'fabric_items/**'
   workflow_dispatch:
+    inputs:
+      deploy_whl:
+        description: 'Do you want to deploy the wheel file?'
+        required: true
+        default: 'no'
+        type: choice
+        options:
+          - yes
+          - no
 
 jobs:
   deploy-dev:
@@ -46,6 +55,20 @@ jobs:
         run: |
           echo "Deploying to DEV..."
           python .cicd/set_variable_group.py "$TARGET_ENVIRONMENT" "$FABRIC_TOKEN"
+
+      - name: Deploy to Dev (Custom environment)
+        run: |
+          if [[ "${{ github.event.inputs.deploy_whl }}" == "yes" ]]; then
+            echo "Deploying wheel file..."
+            # python .cicd/create_custom_envs.py --overwrite_whl yes --token "$FABRIC_TOKEN"
+            python .cicd/create_custom_envs.py --overwrite_whl ${{ github.event.inputs.deploy_whl }} --token "$FABRIC_TOKEN"
+
+          else
+            echo "Skipping wheel file deployment..."
+            # python .cicd/create_custom_envs.py --overwrite_whl no --token "$FABRIC_TOKEN"
+            python .cicd/create_custom_envs.py --overwrite_whl ${{ github.event.inputs.deploy_whl }} --token "$FABRIC_TOKEN"
+
+          fi
 
       - name: Create Deployment Pipeline (in dev)
         run: |

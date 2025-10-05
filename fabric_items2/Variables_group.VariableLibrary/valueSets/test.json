@@ -4,7 +4,7 @@
   "variableOverrides": [
     {
       "name": "source_file_path",
-      "value": "Files/testpeople-100.csv"
+      "value": "Files/raw-data-test/test-people-100.csv"
     },
     {
       "name": "workspace_id",

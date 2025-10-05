@@ -17,7 +17,7 @@
       "name": "source_file_path",
       "note": "",
       "type": "String",
-      "value": "Files/people-100.csv"
+      "value": "Files/raw-data/people-100.csv"
     }
   ]
 }

@@ -8,15 +8,12 @@
 # META   },
 # META   "dependencies": {
 # META     "lakehouse": {
-# META       "default_lakehouse": "4492c780-54fe-4ffe-a4cf-f4c9896b0e52",
-# META       "default_lakehouse_name": "Lakehouse_Silver",
-# META       "default_lakehouse_workspace_id": "2d817fb7-8702-453c-b879-4ce38bf097e1",
+# META       "default_lakehouse": "8008b2a1-fdf8-4b1a-b920-c1b31dc18f4f",
+# META       "default_lakehouse_name": "Lakehouse_Bronze",
+# META       "default_lakehouse_workspace_id": "5871c70b-6796-4e24-9444-9af3e4daa27c",
 # META       "known_lakehouses": [
 # META         {
-# META           "id": "df1d2d45-e701-4535-9be1-323673fb9d2b"
-# META         },
-# META         {
-# META           "id": "4492c780-54fe-4ffe-a4cf-f4c9896b0e52"
+# META           "id": "8008b2a1-fdf8-4b1a-b920-c1b31dc18f4f"
 # META         }
 # META       ]
 # META     },
@@ -54,8 +51,9 @@ from fabric_utils.transform_utils import clean_column_names, mask_email  #, add_
 # CELL ********************
 
 if __name__ == "__main__":
-    file_path = "Files/people-100.csv"
-    # file_path = source_path
+    # file_path = "Files/raw-data/people-100.csv"
+    file_path = source_path
+    print(f"source_path : {source_path}")
     df = spark.read.format("csv") \
         .option("header", "true") \
         .option("inferSchema", "true") \
@@ -72,7 +70,7 @@ if __name__ == "__main__":
 
     df_transformed.write.format("delta") \
         .mode("overwrite") \
-        .saveAsTable("Lakehouse_Silver.People_table")
+        .saveAsTable("Lakehouse_Bronze.People_table")
 
 # METADATA ********************
 
@@ -83,7 +81,7 @@ if __name__ == "__main__":
 
 # CELL ********************
 
-
+# 
 print("I am in the old feature branch")
 
 # METADATA ********************
