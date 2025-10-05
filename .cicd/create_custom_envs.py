@@ -36,8 +36,11 @@ def check_whl_exists(workspace_id, env_id, headers, whl_filename):
     base_url = f"https://api.fabric.microsoft.com/v1/workspaces/{workspace_id}"
     libs_url = f"{base_url}/environments/{env_id}/libraries"
     libs_resp = requests.get(libs_url, headers=headers)
+    print(libs_resp.json())
 
     if libs_resp.status_code != 200:
+        if "EnvironmentLibrariesNotFound" in libs_resp.text:
+            return None
         raise Exception(f"Failed to list custom libraries: {libs_resp.text}")
 
     libs_data = libs_resp.json()
@@ -121,6 +124,7 @@ if __name__ == "__main__":
     overwrite_whl = args.overwrite_whl.lower() if args.overwrite_whl else "no"
     access_token = args.token
     workspace_id = args.workspace_id
+    # workspace_id = "24fbb753-b211-47f0-9acf-ad7e07029fc8"
 
     # workspaceId_dev = "24fbb753-b211-47f0-9acf-ad7e07029fc8"  # "5871c70b-6796-4e24-9444-9af3e4daa27c"
     env_name = "custom_libs_env"
@@ -132,19 +136,24 @@ if __name__ == "__main__":
     }
     # Step 1: Always check/create environment
     env_id = check_or_create_environment(workspace_id, env_name, headers)
+    print(f"env_id: {env_id}")
 
     # Step 2: Always check if WHL exists
     whl_exists = check_whl_exists(workspace_id, env_id, headers, whl_filename)
 
+    if whl_exists == None and overwrite_whl == "yes":
+        upload_whl_file(workspace_id, env_id, headers, wheel_file_path)
+        # publish_environment(workspace_id, env_id, headers)    
+
     # Step3: if yes then delete 
     if overwrite_whl == "yes" and whl_exists:
         delete_whl_file(workspace_id, env_id, headers, whl_filename)
-        publish_environment(workspace_id, env_id, headers)
+        # publish_environment(workspace_id, env_id, headers)
     
 
-    # Step 4: Optionally upload WHL
-    if overwrite_whl == "yes":
-        upload_whl_file(workspace_id, env_id, headers, wheel_file_path)
-        publish_environment(workspace_id, env_id, headers)
-    else:
-        print("Skipping WHL upload...")
+    # # Step 4: Optionally upload WHL
+    # if overwrite_whl == "yes":
+    #     upload_whl_file(workspace_id, env_id, headers, wheel_file_path)
+    #     publish_environment(workspace_id, env_id, headers)
+    # else:
+    #     print("Skipping WHL upload...")
