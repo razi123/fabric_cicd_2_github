@@ -120,7 +120,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     overwrite_whl = args.overwrite_whl.lower() if args.overwrite_whl else "no"
     access_token = args.token
-    workspace_id = args.ws_id
+    workspace_id = args.workspace_id
 
     # workspaceId_dev = "24fbb753-b211-47f0-9acf-ad7e07029fc8"  # "5871c70b-6796-4e24-9444-9af3e4daa27c"
     env_name = "custom_libs_env"
