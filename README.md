@@ -60,3 +60,7 @@ next tasks:
 - run the data pipeline automatically (trigger not possible at the moment)
 - deploy the variable group later 
 - connect lakehouse to respective notebooks, currently done manually
+
+
+# running the create_custom_envs.py
+- python your_script.py --overwrite_whl yes --token eyJ0eXAiOiJKV1QiLCJhb...
