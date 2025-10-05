@@ -62,13 +62,13 @@ jobs:
           if [[ "${{ github.event.inputs.deploy_whl }}" == "true" ]]; then
             echo "Deploying wheel file..."
             # python .cicd/create_custom_envs.py --overwrite_whl yes --token "$FABRIC_TOKEN"
-            python .cicd/create_custom_envs.py --overwrite_whl ${{ github.event.inputs.deploy_whl }} --token "$FABRIC_TOKEN" --workspace_id "$WORKSPACE_ID_DEV"
+            python .cicd/create_custom_envs.py --overwrite_whl ${{ github.event.inputs.deploy_whl }} --token "$FABRIC_TOKEN" --workspace_id "${{ vars.WORKSPACE_ID_DEV }}"
             
 
           else
             echo "Skipping wheel file deployment..."
             # python .cicd/create_custom_envs.py --overwrite_whl no --token "$FABRIC_TOKEN"
-            python .cicd/create_custom_envs.py --overwrite_whl ${{ github.event.inputs.deploy_whl }} --token "$FABRIC_TOKEN" --workspace_id "$WORKSPACE_ID_DEV"
+            python .cicd/create_custom_envs.py --overwrite_whl ${{ github.event.inputs.deploy_whl }} --token "$FABRIC_TOKEN" --workspace_id "${{ vars.WORKSPACE_ID_DEV }}"
           fi
 
       - name: Create Deployment Pipeline (in dev)
