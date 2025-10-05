@@ -57,6 +57,9 @@ jobs:
           echo "Deploying to DEV..."
           python .cicd/set_variable_group.py "$TARGET_ENVIRONMENT" "$FABRIC_TOKEN"
 
+      - name: Build wheel file
+        run: python setup.py bdist_wheel
+
       - name: Deploy to Dev (Custom environment)
         run: |
           if [[ "${{ github.event.inputs.deploy_whl }}" == "true" ]]; then
