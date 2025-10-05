@@ -141,14 +141,16 @@ if __name__ == "__main__":
     # Step 2: Always check if WHL exists
     whl_exists = check_whl_exists(workspace_id, env_id, headers, whl_filename)
 
-    if whl_exists == None and overwrite_whl == "yes":
+    print(f"overwrite_whl = {overwrite_whl}")
+
+    if whl_exists == None and overwrite_whl == "true":
         upload_whl_file(workspace_id, env_id, headers, wheel_file_path)
-        # publish_environment(workspace_id, env_id, headers)    
+        publish_environment(workspace_id, env_id, headers)    
 
     # Step3: if yes then delete 
-    if overwrite_whl == "yes" and whl_exists:
+    if overwrite_whl == "true" and whl_exists:
         delete_whl_file(workspace_id, env_id, headers, whl_filename)
-        # publish_environment(workspace_id, env_id, headers)
+        publish_environment(workspace_id, env_id, headers)
     
 
     # # Step 4: Optionally upload WHL
