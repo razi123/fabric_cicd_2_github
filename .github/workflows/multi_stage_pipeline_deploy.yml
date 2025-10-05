@@ -58,7 +58,7 @@ jobs:
 
       - name: Deploy to Dev (Custom environment)
         run: |
-          if [[ "${{ github.event.inputs.deploy_whl }}" == "yes" ]]; then
+          if [[ "${{ github.event.inputs.deploy_whl }}" == "true" ]]; then
             echo "Deploying wheel file..."
             # python .cicd/create_custom_envs.py --overwrite_whl yes --token "$FABRIC_TOKEN"
             python .cicd/create_custom_envs.py --overwrite_whl ${{ github.event.inputs.deploy_whl }} --token "$FABRIC_TOKEN"
