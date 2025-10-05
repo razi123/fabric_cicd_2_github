@@ -109,12 +109,20 @@ if __name__ == "__main__":
         required=True,
         help="Access token for authentication"
     )
+    parser.add_argument(
+        "--workspace_id",
+        type=str,
+        required=True,
+        help="workspace id"
+    )
+
 
     args = parser.parse_args()
     overwrite_whl = args.overwrite_whl.lower() if args.overwrite_whl else "no"
     access_token = args.token
+    workspace_id = args.ws_id
 
-    workspaceId_dev = "5871c70b-6796-4e24-9444-9af3e4daa27c"
+    # workspaceId_dev = "24fbb753-b211-47f0-9acf-ad7e07029fc8"  # "5871c70b-6796-4e24-9444-9af3e4daa27c"
     env_name = "custom_libs_env"
     wheel_file_path = "./dist/fabric_utils-0.1.0-py3-none-any.whl"
     whl_filename = "fabric_utils-0.1.0-py3-none-any.whl"
@@ -123,20 +131,20 @@ if __name__ == "__main__":
         "Authorization": f"Bearer {access_token}"
     }
     # Step 1: Always check/create environment
-    env_id = check_or_create_environment(workspaceId_dev, env_name, headers)
+    env_id = check_or_create_environment(workspace_id, env_name, headers)
 
     # Step 2: Always check if WHL exists
-    whl_exists = check_whl_exists(workspaceId_dev, env_id, headers, whl_filename)
+    whl_exists = check_whl_exists(workspace_id, env_id, headers, whl_filename)
 
     # Step3: if yes then delete 
     if overwrite_whl == "yes" and whl_exists:
-        delete_whl_file(workspaceId_dev, env_id, headers, whl_filename)
-        publish_environment(workspaceId_dev, env_id, headers)
+        delete_whl_file(workspace_id, env_id, headers, whl_filename)
+        publish_environment(workspace_id, env_id, headers)
     
 
     # Step 4: Optionally upload WHL
     if overwrite_whl == "yes":
-        upload_whl_file(workspaceId_dev, env_id, headers, wheel_file_path)
-        publish_environment(workspaceId_dev, env_id, headers)
+        upload_whl_file(workspace_id, env_id, headers, wheel_file_path)
+        publish_environment(workspace_id, env_id, headers)
     else:
         print("Skipping WHL upload...")
