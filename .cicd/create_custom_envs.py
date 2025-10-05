@@ -48,7 +48,7 @@ def check_whl_exists(workspace_id, env_id, headers, whl_filename):
             print(f"Wheel file exists: {whl}")
             return whl
 
-    print("No .whl file exists in environment.")
+    print("No .whl file dont exists in environment.")
     return None
 
 
@@ -116,8 +116,8 @@ if __name__ == "__main__":
 
     workspaceId_dev = "5871c70b-6796-4e24-9444-9af3e4daa27c"
     env_name = "custom_libs_env"
-    wheel_file_path = "./dist/fabric_utils-0.1.0-py3-none-any-copy.whl"
-    whl_filename = os.path.basename(wheel_file_path)
+    wheel_file_path = "./dist/fabric_utils-0.1.0-py3-none-any.whl"
+    whl_filename = "fabric_utils-0.1.0-py3-none-any.whl"
     
     headers = {
         "Authorization": f"Bearer {access_token}"
