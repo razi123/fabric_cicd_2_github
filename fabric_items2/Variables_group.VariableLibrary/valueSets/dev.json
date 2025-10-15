@@ -4,11 +4,15 @@
   "variableOverrides": [
     {
       "name": "workspace_id",
-      "value": "24fbb753-b211-47f0-9acf-ad7e07029fc8"
+      "value": "5871c70b-6796-4e24-9444-9af3e4daa27c"
     },
     {
       "name": "source_file_path",
-      "value": "Files/raw-data-dev/dev-people-100.csv"
+      "value": "Files/people-200.csv"
+    },
+    {
+      "name": "lakehouse_bronze_id",
+      "value": "b9b280a0-521e-40f9-960f-7befde9973a8"
     }
   ]
 }

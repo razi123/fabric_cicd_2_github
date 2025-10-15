@@ -9,6 +9,10 @@
     {
       "name": "workspace_id",
       "value": "d8666b30-e6be-4d1e-90b8-19d40b821be9"
+    },
+    {
+      "name": "lakehouse_bronze_id",
+      "value": "8008b2a1-fdf8-4b1a-b920-c1b31dc18f4f"
     }
   ]
 }

@@ -13,6 +13,20 @@
                 "type": "Expression"
               },
               "type": "string"
+            },
+            "workspace_id": {
+              "value": {
+                "value": "@pipeline().libraryVariables.Variables_group_workspace_id",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "lakehouse_id": {
+              "value": {
+                "value": "@pipeline().libraryVariables.Variables_group_lakehouse_bronze_id",
+                "type": "Expression"
+              },
+              "type": "string"
             }
           }
         },
@@ -31,6 +45,16 @@
       "Variables_group_source_file_path": {
         "type": "String",
         "variableName": "source_file_path",
+        "libraryName": "Variables_group"
+      },
+      "Variables_group_workspace_id": {
+        "type": "String",
+        "variableName": "workspace_id",
+        "libraryName": "Variables_group"
+      },
+      "Variables_group_lakehouse_bronze_id": {
+        "type": "String",
+        "variableName": "lakehouse_bronze_id",
         "libraryName": "Variables_group"
       }
     }
